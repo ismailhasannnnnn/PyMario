@@ -58,6 +58,10 @@ class Mario(Sprite):
         self.center.y = min(max(y, rh / 2), srb - rh / 2)
 
     def update(self):
+
+        # if self.v.y < 1:
+        #     self.inc_add(Vector(0, 1))
+
         self.center += self.v * self.settings.mario_speed_factor
         self.clamp()
         self.rect.centerx, self.rect.centery = self.center.x, self.center.y

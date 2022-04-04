@@ -32,6 +32,8 @@ def check_events(game):
                 elif v == Vector(-1,0):
                     game.mario.movingBackward = True
                     game.mario.wasBackward = False
+                # if v == dirs[UP]:
+                #     mario.inc_add(Vector(0, -7))
                 mario.inc_add(v)
 
         elif e.type == pg.KEYUP:
