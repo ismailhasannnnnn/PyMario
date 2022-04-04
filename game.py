@@ -15,14 +15,21 @@ class Game:
         self.screen = pg.display.set_mode((self.settings.screen_width, self.settings.screen_height))
         pg.display.set_caption("Super Mario Bros.")
         self.mario = Mario(game=self)
+        self.bg_x = 0
 
+
+    def scrollBg(self):
+        if self.mario.rect.centerx >= self.screen.get_rect().centerx and self.mario.movingForward:
+            self.bg_x -= 8
 
     def update(self):
+        self.scrollBg()
         self.mario.update()
+
 
     def draw(self):
         self.screen.fill(self.settings.bg_color)
-        self.screen.blit(Game.world, (0, 0))
+        self.screen.blit(pg.transform.rotozoom(Game.world, 0, 2.4), (self.bg_x, 0))
         self.mario.draw()
         pg.display.update()
 
