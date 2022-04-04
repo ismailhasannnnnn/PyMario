@@ -26,7 +26,11 @@ def check_events(game):
             if e.key in dir_keys:
                 v = dirs[dir_keys[e.key]]
                 mario.inc_add(v)
+                mario.is_running = True
+
+
         elif e.type == pg.KEYUP:
             if e.key in dir_keys:
                 v = dirs[dir_keys[e.key]]
                 mario.inc_add(-v)
+                mario.is_running = False
