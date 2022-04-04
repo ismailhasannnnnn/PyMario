@@ -35,7 +35,7 @@ class Mario(Sprite):
         self.movingBackward = False
         self.wasForward = False
         self.wasBackward= False
-
+        self.isJumping = False
 
         self.forward_timer = Timer(image_list=self.mario_running_forward, delay=200, start_index=0, is_loop=True)
 
@@ -73,24 +73,24 @@ class Mario(Sprite):
         running_backward = self.backward_timer.image()
         stand_forward = pg.image.load("images/mario1.png")
         stand_backward = pg.transform.flip(pg.image.load("images/mario1.png"), True, False)
+        jump_forward = pg.image.load("images/mario5.png")
+        jump_backward = pg.transform.flip(pg.image.load("images/mario5.png"), True, False)
 
         # print("moving Forward")
         # print(self.wasForward)
         # print(self.wasBackward)
         # print(running_backward)
 
-        if self.movingForward:
+        if self.isJumping:
+            if self.wasBackward:
+                self.screen.blit(jump_backward, self.rect)
+            else:
+                self.screen.blit(jump_forward, self.rect)
+        elif self.movingForward:
             self.screen.blit(running_forward, self.rect)
-
         elif self.movingBackward:
             self.screen.blit(running_backward, self.rect)
-
+        elif self.wasBackward:
+            self.screen.blit(stand_backward, self.rect)
         else:
-            if self.wasForward:
-                self.screen.blit(stand_forward, self.rect)
-                self.wasBackward = False
-            elif self.wasBackward:
-                self.screen.blit(stand_backward, self.rect)
-                self.wasForward = False
-            else:
-                self.screen.blit(stand_forward, self.rect)
+            self.screen.blit(stand_forward, self.rect)

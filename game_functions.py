@@ -35,6 +35,8 @@ def check_events(game):
                 # if v == dirs[UP]:
                 #     mario.inc_add(Vector(0, -7))
                 mario.inc_add(v)
+            if e.key == pg.K_SPACE:
+                pass
 
         elif e.type == pg.KEYUP:
             if e.key in dir_keys:
