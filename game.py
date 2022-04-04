@@ -16,11 +16,14 @@ class Game:
         pg.display.set_caption("Super Mario Bros.")
         self.mario = Mario(game=self)
         self.bg_x = 0
+        self.scrolling = False
 
 
     def scrollBg(self):
         if self.mario.rect.centerx >= self.screen.get_rect().centerx and self.mario.movingForward:
             self.bg_x -= 8
+            self.scrolling = True
+        self.scrolling = False
 
     def update(self):
         self.scrollBg()

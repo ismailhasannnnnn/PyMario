@@ -25,9 +25,11 @@ def check_events(game):
         elif e.type == pg.KEYDOWN:
             if e.key in dir_keys:
                 v = dirs[dir_keys[e.key]]
-                mario.inc_add(v)
                 if v == Vector(1, 0):
                     game.mario.movingForward = True
+                    if game.scrolling:
+                        pass
+                mario.inc_add(v)
         elif e.type == pg.KEYUP:
             if e.key in dir_keys:
                 v = dirs[dir_keys[e.key]]
