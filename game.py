@@ -1,8 +1,11 @@
 import pygame as pg
 import game_functions as gf
 from settings import Settings
+from stats import Stats
 from mario import Mario
 from vector import Vector
+from menu import Menu
+from scoreboard import Scoreboard
 
 
 class Game:
@@ -12,8 +15,12 @@ class Game:
         pg.init()
 
         self.settings = Settings()
+        self.stats = Stats(game=self)
+        self.bg_color = self.settings.bg_color
         self.screen = pg.display.set_mode((self.settings.screen_width, self.settings.screen_height))
+        self.sb = Scoreboard(game=self)
         pg.display.set_caption("Super Mario Bros.")
+
         self.mario = Mario(game=self)
         self.bg_x = 0
         self.scrolling = False
@@ -28,12 +35,14 @@ class Game:
 
     def update(self):
         self.scrollBg()
+        self.sb.update()
         self.mario.update()
 
 
     def draw(self):
         self.screen.fill(self.settings.bg_color)
         self.screen.blit(pg.transform.rotozoom(Game.world, 0, 2.4), (self.bg_x, 0))
+        self.sb.draw()
         self.mario.draw()
         pg.display.update()
 
@@ -49,6 +58,8 @@ class Game:
 
 def main():
     g = Game()
+    menu = Menu(game=g)
+    menu.show()
     g.play()
 
 
