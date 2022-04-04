@@ -30,7 +30,8 @@ class Game:
         if self.mario.rect.centerx >= self.screen.get_rect().centerx and self.mario.movingForward:
             self.bg_x -= 8
             self.scrolling = True
-            self.mario.v = Vector(0, self.mario.v.y)
+            # self.mario.v = Vector(0, self.mario.v.y)
+            self.mario.v.x = 0
         self.scrolling = False
 
     def update(self):

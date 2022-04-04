@@ -28,15 +28,15 @@ def check_events(game):
                 v = dirs[dir_keys[e.key]]
                 if v == Vector(1, 0):
                     game.mario.movingForward = True
-                    game.mario.wasForward = False
+                    game.mario.wasBackward = False
                 elif v == Vector(-1,0):
                     game.mario.movingBackward = True
-                    game.mario.wasBackward = False
-                # if v == dirs[UP]:
-                #     mario.inc_add(Vector(0, -7))
+                    game.mario.wasBackward = True
+
                 mario.inc_add(v)
             if e.key == pg.K_SPACE:
-                pass
+                mario.isJumping = True
+
 
         elif e.type == pg.KEYUP:
             if e.key in dir_keys:
@@ -47,7 +47,9 @@ def check_events(game):
                     mario.inc_add(-v)
                 if v == Vector(1, 0):
                     game.mario.movingForward = False
-                    game.mario.wasForward = True
+
                 elif v == Vector(-1,0):
                     game.mario.movingBackward = False
-                    game.mario.wasBackward = True
+
+            # if e.key == pg.K_SPACE and mario.isJumping is True:
+            #     mario.isJumping = False

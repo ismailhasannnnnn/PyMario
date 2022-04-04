@@ -37,6 +37,10 @@ class Mario(Sprite):
         self.wasBackward= False
         self.isJumping = False
 
+        self.y_gravity = 2
+        self.jump_height = 20
+        self.vel_y = self.jump_height
+
         self.forward_timer = Timer(image_list=self.mario_running_forward, delay=200, start_index=0, is_loop=True)
 
         self.backward_timer = Timer(image_list=self.mario_running_backward, delay=200, start_index=0, is_loop=True)
@@ -44,6 +48,7 @@ class Mario(Sprite):
         self.rect.centerx = self.screen_rect.centerx - 400
         # self.rect.bottom = self.screen_rect.bottom
         self.rect.centery = self.screen_rect.centery + 195
+
         self.center = Vector(self.rect.centerx, self.rect.centery)
 
     def inc_add(self, other):
@@ -57,14 +62,27 @@ class Mario(Sprite):
         self.center.x = min(max(x, rw / 2), srw - rw / 2)
         self.center.y = min(max(y, rh / 2), srb - rh / 2)
 
+
+
+
     def update(self):
 
-        # if self.v.y < 1:
-        #     self.inc_add(Vector(0, 1))
+        if self.isJumping:
+            self.center.y -= self.vel_y
+            self.vel_y -= self.y_gravity
+            if self.vel_y < -self.jump_height:
+                self.isJumping = False
+                self.vel_y = self.jump_height
+
+
 
         self.center += self.v * self.settings.mario_speed_factor
         self.clamp()
         self.rect.centerx, self.rect.centery = self.center.x, self.center.y
+        print(self.isJumping)
+
+
+
 
 
     def draw(self):
