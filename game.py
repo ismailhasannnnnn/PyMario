@@ -6,10 +6,11 @@ from mario import Mario
 from vector import Vector
 from menu import Menu
 from scoreboard import Scoreboard
+from sound import Sound
 
 
 class Game:
-    world = pg.image.load("images/level_bg.png")
+    world = pg.image.load("images/world1.png")
 
     def __init__(self):
         pg.init()
@@ -20,6 +21,7 @@ class Game:
         self.screen = pg.display.set_mode((self.settings.screen_width, self.settings.screen_height))
         self.sb = Scoreboard(game=self)
         pg.display.set_caption("Super Mario Bros.")
+        self.sound = Sound()
 
         self.mario = Mario(game=self)
         self.bg_x = 0
@@ -42,19 +44,20 @@ class Game:
 
     def draw(self):
         self.screen.fill(self.settings.bg_color)
-        self.screen.blit(pg.transform.rotozoom(Game.world, 0, 2.4), (self.bg_x, 0))
+        self.screen.blit(pg.transform.rotozoom(Game.world, 0, 2.5), (self.bg_x, 0))
         self.sb.draw()
         self.mario.draw()
         pg.display.update()
 
     def play(self):
         self.finished = False
+        self.sound.play_bg()
         clock = pg.time.Clock()
         while not self.finished:
             self.update()
             self.draw()
             gf.check_events(game=self)
-            clock.tick(144)
+            clock.tick(1000)
 
 
 def main():

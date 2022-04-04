@@ -2,6 +2,7 @@ import sys
 import pygame as pg
 from vector import Vector
 from mario import Mario
+from sound import Sound
 
 LEFT, RIGHT, UP, DOWN, STOP = 'left', 'right', 'up', 'down', 'stop'
 
@@ -35,6 +36,7 @@ def check_events(game):
 
                 mario.inc_add(v)
             if e.key == pg.K_SPACE:
+                Sound.play_jump(Sound())
                 mario.isJumping = True
 
 
