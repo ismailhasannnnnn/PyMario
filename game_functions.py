@@ -29,8 +29,6 @@ def check_events(game):
                 if v == Vector(1, 0):
                     game.mario.movingForward = True
                     game.mario.wasForward = False
-                    if game.scrolling:
-                        pass
                 elif v == Vector(-1,0):
                     game.mario.movingBackward = True
                     game.mario.wasBackward = False
@@ -39,7 +37,10 @@ def check_events(game):
         elif e.type == pg.KEYUP:
             if e.key in dir_keys:
                 v = dirs[dir_keys[e.key]]
-                mario.inc_add(-v)
+                if mario.v == Vector(0, 0):
+                    mario.v = Vector(0, 0)
+                else:
+                    mario.inc_add(-v)
                 if v == Vector(1, 0):
                     game.mario.movingForward = False
                     game.mario.wasForward = True

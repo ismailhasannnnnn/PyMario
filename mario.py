@@ -41,8 +41,9 @@ class Mario(Sprite):
 
         self.backward_timer = Timer(image_list=self.mario_running_backward, delay=200, start_index=0, is_loop=True)
     def center_bottom(self):
-        self.rect.centerx = self.screen_rect.centerx
-        self.rect.bottom = self.screen_rect.bottom
+        self.rect.centerx = self.screen_rect.centerx - 400
+        # self.rect.bottom = self.screen_rect.bottom
+        self.rect.centery = self.screen_rect.centery + 195
         self.center = Vector(self.rect.centerx, self.rect.centery)
 
     def inc_add(self, other):
@@ -68,10 +69,11 @@ class Mario(Sprite):
         running_backward = self.backward_timer.image()
         stand_forward = pg.image.load("images/mario1.png")
         stand_backward = pg.transform.flip(pg.image.load("images/mario1.png"), True, False)
-        print("moving Forward")
-        print(self.wasForward)
-        print(self.wasBackward)
-        print(running_backward)
+
+        # print("moving Forward")
+        # print(self.wasForward)
+        # print(self.wasBackward)
+        # print(running_backward)
 
         if self.movingForward:
             self.screen.blit(running_forward, self.rect)
