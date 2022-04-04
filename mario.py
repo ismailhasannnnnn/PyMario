@@ -7,10 +7,14 @@ from timer import Timer
 
 class Mario(Sprite):
     mario_sheet = "images/mario1.png"
-    mario_images = [pg.image.load("images/mario2.png"), pg.image.load("images/mario3.png"),
-                    pg.image.load("images/mario4.png")]
 
-    is_running = False
+    mario_running_forward = [pg.image.load("images/mario2.png"), pg.image.load("images/mario3.png"),
+                             pg.image.load("images/mario4.png")]
+    mario_running_backward = [pg.transform.flip(pg.image.load("images/mario2.png"), True, False),
+                              pg.transform.flip(pg.image.load("images/mario3.png"), True, False),
+                              pg.transform.flip(pg.image.load("images/mario4.png"), True, False)]
+
+
 
     def __init__(self, game):
         super().__init__()
@@ -28,9 +32,14 @@ class Mario(Sprite):
         self.center_bottom()
         self.v = Vector()
         self.movingForward = False
+        self.movingBackward = False
+        self.wasForward = False
+        self.wasBackward= False
 
-        self.timer = Timer(image_list=self.mario_images, delay=200, start_index=0, is_loop=True)
 
+        self.forward_timer = Timer(image_list=self.mario_running_forward, delay=200, start_index=0, is_loop=True)
+
+        self.backward_timer = Timer(image_list=self.mario_running_backward, delay=200, start_index=0, is_loop=True)
     def center_bottom(self):
         self.rect.centerx = self.screen_rect.centerx
         self.rect.bottom = self.screen_rect.bottom
@@ -52,14 +61,30 @@ class Mario(Sprite):
         self.clamp()
         self.rect.centerx, self.rect.centery = self.center.x, self.center.y
 
+
     def draw(self):
 
-        running = self.timer.image()
-        stand = pg.image.load("images/mario1.png")
+        running_forward = self.forward_timer.image()
+        running_backward = self.backward_timer.image()
+        stand_forward = pg.image.load("images/mario1.png")
+        stand_backward = pg.transform.flip(pg.image.load("images/mario1.png"), True, False)
+        print("moving Forward")
+        print(self.wasForward)
+        print(self.wasBackward)
+        print(running_backward)
 
-        if self.is_running:
-            self.screen.blit(running, self.rect)
+        if self.movingForward:
+            self.screen.blit(running_forward, self.rect)
+
+        elif self.movingBackward:
+            self.screen.blit(running_backward, self.rect)
+
         else:
-            self.screen.blit(stand, self.rect)
-
-
+            if self.wasForward:
+                self.screen.blit(stand_forward, self.rect)
+                self.wasBackward = False
+            elif self.wasBackward:
+                self.screen.blit(stand_backward, self.rect)
+                self.wasForward = False
+            else:
+                self.screen.blit(stand_forward, self.rect)

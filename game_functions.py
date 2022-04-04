@@ -1,6 +1,7 @@
 import sys
 import pygame as pg
 from vector import Vector
+from mario import Mario
 
 LEFT, RIGHT, UP, DOWN, STOP = 'left', 'right', 'up', 'down', 'stop'
 
@@ -27,12 +28,21 @@ def check_events(game):
                 v = dirs[dir_keys[e.key]]
                 if v == Vector(1, 0):
                     game.mario.movingForward = True
+                    game.mario.wasForward = False
                     if game.scrolling:
                         pass
+                elif v == Vector(-1,0):
+                    game.mario.movingBackward = True
+                    game.mario.wasBackward = False
                 mario.inc_add(v)
+
         elif e.type == pg.KEYUP:
             if e.key in dir_keys:
                 v = dirs[dir_keys[e.key]]
                 mario.inc_add(-v)
                 if v == Vector(1, 0):
                     game.mario.movingForward = False
+                    game.mario.wasForward = True
+                elif v == Vector(-1,0):
+                    game.mario.movingBackward = False
+                    game.mario.wasBackward = True
