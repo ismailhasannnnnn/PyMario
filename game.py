@@ -30,10 +30,15 @@ class Game:
 
     def scrollBg(self):
         if self.mario.rect.centerx >= self.screen.get_rect().centerx and self.mario.movingForward:
-            self.bg_x -= 8
-            self.scrolling = True
-            # self.mario.v = Vector(0, self.mario.v.y)
-            self.mario.v.x = 0
+            if (-(Game.world.get_rect().width * 2.5) + 1200) < self.bg_x: # multiplier 3.18 works
+                self.bg_x -= 8
+                self.scrolling = True
+                # self.mario.v = Vector(0, self.mario.v.y)
+                self.mario.v.x = 0
+            else:
+                self.bg_x = (-(Game.world.get_rect().width * 2.5) + 1200)
+                self.scrolling = False
+                self.mario.v.x = 1
         self.scrolling = False
 
     def update(self):
