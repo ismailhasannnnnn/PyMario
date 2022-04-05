@@ -9,11 +9,12 @@ class Mario(Sprite):
     mario_sheet = "images/mario1.png"
 
 
-    mario_running_forward = [pg.image.load("images/mario2.png"), pg.image.load("images/mario3.png"),
-                             pg.image.load("images/mario4.png")]
-    mario_running_backward = [pg.transform.flip(pg.image.load("images/mario2.png"), True, False),
-                              pg.transform.flip(pg.image.load("images/mario3.png"), True, False),
-                              pg.transform.flip(pg.image.load("images/mario4.png"), True, False)]
+    mario_running_forward = [pg.transform.rotozoom(pg.image.load("images/mario2.png"), 0, 2),
+                             pg.transform.rotozoom(pg.image.load("images/mario3.png"), 0, 2),
+                             pg.transform.rotozoom(pg.image.load("images/mario4.png"), 0, 2)]
+    mario_running_backward = [pg.transform.flip(pg.transform.rotozoom(pg.image.load("images/mario2.png"), 0, 2), True, False),
+                              pg.transform.flip(pg.transform.rotozoom(pg.image.load("images/mario3.png"), 0, 2), True, False),
+                              pg.transform.flip(pg.transform.rotozoom(pg.image.load("images/mario4.png"), 0, 2), True, False)]
 
     def __init__(self, game):
         super().__init__()
@@ -46,7 +47,7 @@ class Mario(Sprite):
     def center_bottom(self):
         self.rect.centerx = self.screen_rect.centerx - 400
         # self.rect.bottom = self.screen_rect.bottom
-        self.rect.centery = self.screen_rect.centery + 210
+        self.rect.centery = self.screen_rect.centery + 195
 
         self.center = Vector(self.rect.centerx, self.rect.centery)
 
@@ -70,10 +71,6 @@ class Mario(Sprite):
                 self.isJumping = False
                 self.vel_y = self.jump_height
 
-        collisions = pg.sprite.spritecollide(self, self.game.enemies.enemies, False)
-        if len(collisions) is not 0:
-            self.kill()
-
         self.center += self.v * self.settings.mario_speed_factor
         self.clamp()
         self.rect.centerx, self.rect.centery = self.center.x, self.center.y
@@ -83,10 +80,10 @@ class Mario(Sprite):
 
         running_forward = self.forward_timer.image()
         running_backward = self.backward_timer.image()
-        stand_forward = pg.image.load("images/mario1.png")
-        stand_backward = pg.transform.flip(pg.image.load("images/mario1.png"), True, False)
-        jump_forward = pg.image.load("images/mario5.png")
-        jump_backward = pg.transform.flip(pg.image.load("images/mario5.png"), True, False)
+        stand_forward = pg.transform.rotozoom(pg.image.load("images/mario1.png"), 0, 2)
+        stand_backward = pg.transform.flip(pg.transform.rotozoom(pg.image.load("images/mario1.png"), 0, 2), True, False)
+        jump_forward = pg.transform.rotozoom(pg.image.load("images/mario5.png"), 0, 2)
+        jump_backward = pg.transform.flip(pg.transform.rotozoom(pg.image.load("images/mario5.png"), 0, 2), True, False)
 
         # print("moving Forward")
         # print(self.wasForward)

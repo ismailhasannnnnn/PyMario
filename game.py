@@ -55,7 +55,7 @@ class Game:
         self.sb.update()
         self.mario.update()
         self.enemies.update()
-        print(self.scrolling)
+        # print(self.scrolling)
 
 
     def draw(self):
