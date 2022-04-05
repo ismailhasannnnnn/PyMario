@@ -70,10 +70,14 @@ class Mario(Sprite):
                 self.isJumping = False
                 self.vel_y = self.jump_height
 
+        collisions = pg.sprite.spritecollide(self, self.game.enemies.enemies, False)
+        if len(collisions) is not 0:
+            self.kill()
+
         self.center += self.v * self.settings.mario_speed_factor
         self.clamp()
         self.rect.centerx, self.rect.centery = self.center.x, self.center.y
-        print(self.isJumping)
+        # print(f'x: {self.rect.centerx}      y: {self.rect.centery}')
 
     def draw(self):
 

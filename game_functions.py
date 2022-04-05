@@ -30,13 +30,14 @@ def check_events(game):
                 if v == Vector(1, 0):
                     game.mario.movingForward = True
                     game.mario.wasBackward = False
-                elif v == Vector(-1,0):
+                elif v == Vector(-1, 0):
                     game.mario.movingBackward = True
                     game.mario.wasBackward = True
 
                 mario.inc_add(v)
             if e.key == pg.K_SPACE:
-                Sound.play_jump(Sound())
+                if not mario.isJumping:
+                    Sound.play_jump(Sound())
                 mario.isJumping = True
 
 

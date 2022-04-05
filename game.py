@@ -7,10 +7,13 @@ from vector import Vector
 from menu import Menu
 from scoreboard import Scoreboard
 from sound import Sound
-
+from goomba import Goomba
+from spritesheet import SpriteSheet
+from enemies import Enemies
 
 class Game:
     world = pg.image.load("images/world1.png")
+    filename = "images/allsprites.png"
 
     def __init__(self):
         pg.init()
@@ -22,10 +25,14 @@ class Game:
         self.sb = Scoreboard(game=self)
         pg.display.set_caption("Super Mario Bros.")
         self.sound = Sound()
-
-        self.mario = Mario(game=self)
+        self.spritesheet = SpriteSheet(filename=Game.filename)
         self.bg_x = 0
+        self.mario = Mario(game=self)
+        self.enemies = Enemies(game=self)
+
         self.scrolling = False
+
+        self.enemies.create_goomba(ul=(400, 485))
 
 
     def scrollBg(self):
@@ -39,12 +46,16 @@ class Game:
                 self.bg_x = (-(Game.world.get_rect().width * 2.5) + 1200)
                 self.scrolling = False
                 self.mario.v.x = 1
-        self.scrolling = False
+        if not self.mario.movingForward or self.mario.movingBackward:
+            self.scrolling = False
+
 
     def update(self):
         self.scrollBg()
         self.sb.update()
         self.mario.update()
+        self.enemies.update()
+        print(self.scrolling)
 
 
     def draw(self):
@@ -52,6 +63,7 @@ class Game:
         self.screen.blit(pg.transform.rotozoom(Game.world, 0, 2.5), (self.bg_x, 0))
         self.sb.draw()
         self.mario.draw()
+        self.enemies.draw()
         pg.display.update()
 
     def play(self):
