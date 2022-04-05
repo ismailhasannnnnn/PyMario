@@ -23,8 +23,7 @@ class Goomba(Sprite):
                               pg.transform.rotozoom(self.spritesheet.image_at(Goomba.goomba2_rect), 0, 2)]
         self.image = self.goomba_images[0]
         self.rect = self.image.get_rect()
-        self.rect.x = ul[0]
-        self.rect.y = ul[1]
+        self.rect.x, self.rect.y = ul
         self.timer = Timer(self.goomba_images, 0, 500, True)
         self.screen_rect = self.screen.get_rect()
 
@@ -33,6 +32,7 @@ class Goomba(Sprite):
     def update(self):
         self.mario = self.game.mario
         self.enemies = self.game.enemies
+        self.rect.x = self.ul[0] + self.enemies.bg_x
         collisions = pg.sprite.spritecollide(self.mario, self.enemies.enemies, True)
         # print(f'Goomba: {self.rect.x}         {self.rect.y}')
         # print(collisions)

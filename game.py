@@ -32,7 +32,7 @@ class Game:
 
         self.scrolling = False
 
-        self.enemies.create_goomba(ul=(400, 485))
+        self.enemies.create_goomba(ul=(1300, 485))
 
 
     def scrollBg(self):
