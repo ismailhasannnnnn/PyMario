@@ -55,6 +55,7 @@ class Game:
         self.sb.update()
         self.mario.update()
         self.enemies.update()
+        print(f'Mario: {self.mario.rect.x}         {self.mario.rect.y}')
         # print(self.scrolling)
 
 

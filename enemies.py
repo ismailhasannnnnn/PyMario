@@ -25,11 +25,11 @@ class Enemies:
         if self.game.scrolling:
             self.bg_x -= 8
 
-        for enemy in self.enemies.sprites():
+        for enemy in self.enemies:
             enemy.update()
 
     def draw(self):
 
-        for enemy in self.enemies.sprites():
+        for enemy in self.enemies:
             enemy.draw()
 

@@ -63,6 +63,9 @@ class Mario(Sprite):
         self.center.y = min(max(y, rh / 2), srb - rh / 2)
 
     def update(self):
+        self.enemies = self.game.enemies
+        collisions = pg.sprite.spritecollideany(self, self.enemies.enemies)
+
 
         if self.isJumping:
             self.center.y -= self.vel_y
