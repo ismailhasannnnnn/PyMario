@@ -3,11 +3,9 @@ import game_functions as gf
 from settings import Settings
 from stats import Stats
 from mario import Mario
-from vector import Vector
 from menu import Menu
 from scoreboard import Scoreboard
 from sound import Sound
-from goomba import Goomba
 from spritesheet import SpriteSheet
 from enemies import Enemies
 
@@ -34,6 +32,7 @@ class Game:
 
         self.enemies.create_goomba(ul=(1300, 485))
         self.enemies.create_koopa(ul=(600, 470))
+        self.enemies.create_plant(ul=(800, 470))
         # self.enemies.create_goomba(ul=(1340, 485))
 
 

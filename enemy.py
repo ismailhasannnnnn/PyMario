@@ -20,6 +20,11 @@ class Enemy(Sprite):
         self.timer = Timer(self.image_list, 0, delay, isLoop)
         self.screen_rect = self.screen.get_rect()
 
+
+    def collision_check(self):
+        collisions = pg.sprite.spritecollide(self.mario, self.enemies.enemies, True)
+
+
     def update(self):
         self.mario = self.game.mario
         self.enemies = self.game.enemies
@@ -29,7 +34,7 @@ class Enemy(Sprite):
 
         self.rect.centerx += self.enemies.bg_x - self.lastBg_x
 
-        collisions = pg.sprite.spritecollide(self.mario, self.enemies.enemies, True)
+        self.collision_check()
 
         self.rect.centerx, self.rect.centery = self.center.x, self.center.y
 
