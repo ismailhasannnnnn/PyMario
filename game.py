@@ -10,11 +10,9 @@ from sound import Sound
 from goomba import Goomba
 from spritesheet import SpriteSheet
 from enemies import Enemies
-from tilemap import Tile
-
 
 class Game:
-    world = pg.image.load("images/level_bg.png")
+    world = pg.image.load("images/world1.png")
     filename = "images/allsprites.png"
 
     def __init__(self):
@@ -33,12 +31,16 @@ class Game:
         self.enemies = Enemies(game=self)
         self.tile = Tile(game=self)
         self.scrolling = False
+
         self.enemies.create_goomba(ul=(1300, 485))
+        self.enemies.create_koopa(ul=(600, 470))
+        self.enemies.create_plant(ul=(800, 470))
+        # self.enemies.create_goomba(ul=(1340, 485))
 
 
     def scrollBg(self):
         if self.mario.rect.centerx >= self.screen.get_rect().centerx and self.mario.movingForward:
-            if (-(Game.world.get_rect().width * 2.5) + 1200) < self.bg_x:  # multiplier 3.18 works
+            if (-(Game.world.get_rect().width * 2.5) + 1200) < self.bg_x: # multiplier 3.18 works
                 self.bg_x -= 8
                 self.scrolling = True
                 # self.mario.v = Vector(0, self.mario.v.y)
@@ -50,6 +52,7 @@ class Game:
         if not self.mario.movingForward or self.mario.movingBackward:
             self.scrolling = False
 
+
     def update(self):
         self.scrollBg()
         self.sb.update()
@@ -57,7 +60,9 @@ class Game:
         self.enemies.update()
         self.tile.update()
         print(f'Mario: {self.mario.rect.x}         {self.mario.rect.y}')
+        # print(f'Mario: {self.mario.rect.x}         {self.mario.rect.y}')
         # print(self.scrolling)
+
 
     def draw(self):
         self.screen.fill(self.settings.bg_color)

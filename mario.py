@@ -3,18 +3,19 @@ from vector import Vector
 from pygame.sprite import Sprite
 from timer import Timer
 from sound import Sound
+from coords import Coords
 
 
 class Mario(Sprite):
     mario_sheet = "images/mario1.png"
 
 
-    mario_running_forward = [pg.transform.rotozoom(pg.image.load("images/mario2.png"), 0, 2),
-                             pg.transform.rotozoom(pg.image.load("images/mario3.png"), 0, 2),
-                             pg.transform.rotozoom(pg.image.load("images/mario4.png"), 0, 2)]
-    mario_running_backward = [pg.transform.flip(pg.transform.rotozoom(pg.image.load("images/mario2.png"), 0, 2), True, False),
-                              pg.transform.flip(pg.transform.rotozoom(pg.image.load("images/mario3.png"), 0, 2), True, False),
-                              pg.transform.flip(pg.transform.rotozoom(pg.image.load("images/mario4.png"), 0, 2), True, False)]
+    mario_running_forward = [pg.transform.rotozoom(pg.image.load("images/mario2.png"), 0, 3),
+                             pg.transform.rotozoom(pg.image.load("images/mario3.png"), 0, 3),
+                             pg.transform.rotozoom(pg.image.load("images/mario4.png"), 0, 3)]
+    mario_running_backward = [pg.transform.flip(pg.transform.rotozoom(pg.image.load("images/mario2.png"), 0, 3), True, False),
+                              pg.transform.flip(pg.transform.rotozoom(pg.image.load("images/mario3.png"), 0, 3), True, False),
+                              pg.transform.flip(pg.transform.rotozoom(pg.image.load("images/mario4.png"), 0, 3), True, False)]
 
     def __init__(self, game):
         super().__init__()
@@ -83,10 +84,10 @@ class Mario(Sprite):
 
         running_forward = self.forward_timer.image()
         running_backward = self.backward_timer.image()
-        stand_forward = pg.transform.rotozoom(pg.image.load("images/mario1.png"), 0, 2)
-        stand_backward = pg.transform.flip(pg.transform.rotozoom(pg.image.load("images/mario1.png"), 0, 2), True, False)
-        jump_forward = pg.transform.rotozoom(pg.image.load("images/mario5.png"), 0, 2)
-        jump_backward = pg.transform.flip(pg.transform.rotozoom(pg.image.load("images/mario5.png"), 0, 2), True, False)
+        stand_forward = pg.transform.rotozoom(pg.image.load("images/mario1.png"), 0, 3)
+        stand_backward = pg.transform.flip(pg.transform.rotozoom(pg.image.load("images/mario1.png"), 0, 3), True, False)
+        jump_forward = pg.transform.rotozoom(pg.image.load("images/mario5.png"), 0, 3)
+        jump_backward = pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["L_M_BJUMP"]), 0, 3)
 
         # print("moving Forward")
         # print(self.wasForward)
