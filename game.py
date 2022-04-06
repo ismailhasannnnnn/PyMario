@@ -33,6 +33,8 @@ class Game:
         self.scrolling = False
 
         self.enemies.create_goomba(ul=(1300, 485))
+        self.enemies.create_koopa(ul=(600, 470))
+        # self.enemies.create_goomba(ul=(1340, 485))
 
 
     def scrollBg(self):
@@ -55,7 +57,7 @@ class Game:
         self.sb.update()
         self.mario.update()
         self.enemies.update()
-        print(f'Mario: {self.mario.rect.x}         {self.mario.rect.y}')
+        # print(f'Mario: {self.mario.rect.x}         {self.mario.rect.y}')
         # print(self.scrolling)
 
 

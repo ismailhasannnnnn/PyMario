@@ -1,6 +1,7 @@
 import pygame as pg
 from vector import Vector
 from goomba import Goomba
+from koopa import Koopa
 from pygame.sprite import Sprite, Group
 
 class Enemies:
@@ -18,6 +19,10 @@ class Enemies:
     def create_goomba(self, ul):
         goomba = Goomba(self.game, ul)
         self.enemies.add(goomba)
+
+    def create_koopa(self, ul):
+        koopa = Koopa(self.game, ul)
+        self.enemies.add(koopa)
 
 
     def update(self):
