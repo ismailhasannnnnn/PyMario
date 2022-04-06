@@ -33,14 +33,16 @@ class Tile():
                 for char in line:
                     if char == 'X':
                         self.screen.blit(pg.transform.rotozoom(self.ground_brick, 0, self.scaling_factor),
-                                         ((self.x * 40) + self.bg_x, self.y * 40))
+                                         ((self.x * 16 * self.scaling_factor) + self.bg_x, self.y * 16 *
+                                          self.scaling_factor))
                     if char == 'B':
                         self.screen.blit(pg.transform.rotozoom(self.empty_brick, 0, self.scaling_factor),
                                          ((self.x * 16 * self.scaling_factor) +
                                           self.bg_x, self.y * 16 * self.scaling_factor))
                     if char == '?':
                         self.screen.blit(pg.transform.rotozoom(self.item_brick, 0, self.scaling_factor),
-                                         ((self.x * 40) + self.bg_x, self.y * 40))
+                                         ((self.x * 16 * self.scaling_factor) + self.bg_x, self.y *
+                                          16 * self.scaling_factor))
 
                     self.x += 1
                 self.y += 1

@@ -41,9 +41,9 @@ class Mario(Sprite):
         self.jump_height = 20
         self.vel_y = self.jump_height
 
-        self.forward_timer = Timer(image_list=self.mario_running_forward, delay=200, start_index=0, is_loop=True)
+        self.forward_timer = Timer(image_list=self.mario_running_forward, delay=100, start_index=0, is_loop=True)
 
-        self.backward_timer = Timer(image_list=self.mario_running_backward, delay=200, start_index=0, is_loop=True)
+        self.backward_timer = Timer(image_list=self.mario_running_backward, delay=100, start_index=0, is_loop=True)
 
     def center_bottom(self):
         self.rect.centerx = self.screen_rect.centerx - 400
