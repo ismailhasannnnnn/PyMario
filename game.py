@@ -10,14 +10,15 @@ from sound import Sound
 from goomba import Goomba
 from spritesheet import SpriteSheet
 from enemies import Enemies
+from tilemap import Tile
+
 
 class Game:
-    world = pg.image.load("images/world1.png")
+    world = pg.image.load("images/level_bg.png")
     filename = "images/allsprites.png"
 
     def __init__(self):
         pg.init()
-
         self.settings = Settings()
         self.stats = Stats(game=self)
         self.bg_color = self.settings.bg_color
