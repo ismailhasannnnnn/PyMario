@@ -10,6 +10,7 @@ from spritesheet import SpriteSheet
 from enemies import Enemies
 from tilemap import Tile
 from entity import Entities
+from pregamescreen import PregameScreen
 
 
 class Game:
@@ -94,7 +95,10 @@ class Game:
 def main():
     g = Game()
     menu = Menu(game=g)
+    pregame = PregameScreen(game=g)
+
     menu.show()
+    pregame.show()
     g.play()
 
 

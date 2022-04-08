@@ -40,6 +40,9 @@ def check_events(game):
                     Sound.play_jump(Sound())
                 mario.isJumping = True
 
+            if e.key == pg.K_k:
+                # game.entities.create_entity((mario.rect.centerx + game.enemies.bg_x, mario.rect.centery), pg.image.load("images/mario1.png"))
+                game.enemies.create_fireball((mario.rect.centerx - game.enemies.bg_x, mario.rect.centery - 40))
 
         elif e.type == pg.KEYUP:
             if e.key in dir_keys:

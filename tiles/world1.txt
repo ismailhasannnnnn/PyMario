@@ -1,18 +1,18 @@
 
+             
 
 
-X X X
-                                                                                 G G
+                                                                    G G
                        ?                                                         BBBBBBBB   BBB?             M            BBB    B??B                                                         RR
                                                                                                                                                                                              RRR
- XB?                                                                                                                                                                                         RRRR
+                                                                                                                                                                                            RRRR
                                                                 I                                                                                                                          RRRRR
-                 ?   B?B?B                                                    BMB              L    BS    ?  ?  ?      B          BB      R  R          RR  R             BB?B            RRRRRR
-                                                                                                                                        RR  RR        RRR  RR                           RRRRRRR
-                                                                                                          K                            RRR  RRR      RRRR  RRR                         RRRRRRRR
+                 ?   BMB?B                                                    BMB              L    BS    ?  ?  ?      B          BB      R  R          RR  R             BB?B            RRRRRR
+                                                                                                                                         RR  RR        RRR  RR                           RRRRRRR
+                                                                                                           K                            RRR  RRR      RRRR  RRR                         RRRRRRRR
                        G                 G           G G                                         G G              G  G       G G G G   RRRR  RRRR    RRRRR  RRRR                G G    RRRRRRRRR        R
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  XXXXXXXXXXXXXXX   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  XXXXXXXXXXXXXXX   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  XXXXXXXXXXXXXXX   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  XXXXXXXXXXXXXXX   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 
 

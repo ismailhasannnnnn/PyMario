@@ -24,14 +24,14 @@ class Menu:
 
         headingFont = pg.font.Font("fonts/8bit.ttf", 80)
         subheadingFont = pg.font.Font("fonts/8bit.ttf", 50)
-        font = pg.font.SysFont(None, 48)
+        font = pg.font.Font("fonts/8bit.ttf", 20)
 
         strings = [('SUPER', WHITE, headingFont), ('MARIO', WHITE, headingFont), ('BROS.', WHITE, subheadingFont),
                    (f'HIGH SCORE = {self.highscore:}', GREEN, font)]
 
         self.texts = [self.get_text(msg=s[0], color=s[1], msg_font=s[2]) for s in strings]
 
-        self.posns = [100, 230, 340, 400]
+        self.posns = [100, 230, 340, 420]
 
         centerx = self.screen.get_rect().centerx
 
