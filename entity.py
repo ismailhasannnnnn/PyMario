@@ -12,6 +12,7 @@ class Entities:
         self.screen_rect = self.screen.get_rect()
         self.entities = Group()
 
+
     def create_entity(self, ul, image):
         entity = Entity(self.game, ul, image)
         self.entities.add(entity)
@@ -37,6 +38,7 @@ class Entity(Sprite):
         self.image = image
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = ul
+        self.lastBg_x = 0
 
     def check_collision(self):
 
@@ -49,19 +51,20 @@ class Entity(Sprite):
         self.mario = self.game.mario
         self.enemies = self.game.enemies
         self.center = Vector(self.rect.centerx, self.rect.centery)
-        self.lastBg_x = 0
+
         self.difference = self.enemies.bg_x - (self.lastBg_x)
 
         self.check_collision()
 
-        self.rect.centerx, self.rect.centery, self.center.y
-        # self.lastBg_x = self.enemies.bg_x
+        self.rect.centerx += self.difference
+
+        self.lastBg_x = self.enemies.bg_x
 
         print(f'{self.difference}')
 
 
     def draw(self):
         self.enemies = self.game.enemies
-        if -100 <= self.rect.x + self.enemies.bg_x < 1400:
-            self.screen.blit(self.image, (self.rect.x + self.enemies.bg_x, self.rect.y))
+        self.screen.blit(self.image, (self.rect.x, self.rect.y))
+        # pg.draw.rect(self.screen, (0, 0, 0), self.rect)
 
