@@ -64,7 +64,7 @@ class Game:
         self.enemies.update()
         self.tile.update()
         self.entities.update()
-        print(f'Mario: {self.mario.rect.x}         {self.mario.rect.y}')
+        # print(f'Mario: {self.mario.rect.x}         {self.mario.rect.y}')
         # print(f'Mario: {self.mario.rect.x}         {self.mario.rect.y}')
         # print(self.scrolling)
 

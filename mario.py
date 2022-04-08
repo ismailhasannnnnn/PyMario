@@ -65,7 +65,10 @@ class Mario(Sprite):
 
     def update(self):
         self.enemies = self.game.enemies
+        self.entities = self.game.entities
+
         collisions = pg.sprite.spritecollideany(self, self.enemies.enemies)
+
 
 
         if self.isJumping:

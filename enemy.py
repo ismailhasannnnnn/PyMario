@@ -31,7 +31,7 @@ class Enemy(Sprite):
         self.lastBg_x = 0
         self.center += self.v
 
-        self.rect.centerx += self.enemies.bg_x - self.lastBg_x
+        self.rect.centerx += self.enemies.bg_x
 
         self.collision_check()
 
