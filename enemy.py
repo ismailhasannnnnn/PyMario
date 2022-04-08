@@ -1,7 +1,6 @@
 import pygame as pg
 from pygame.sprite import Sprite
 from vector import Vector
-from coords import Coords
 from timer import Timer
 
 class Enemy(Sprite):

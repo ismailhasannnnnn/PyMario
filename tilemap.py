@@ -1,5 +1,6 @@
 import pygame as pg
-
+from entity import Entity
+from coords import Coords
 
 class Tile():
     def __init__(self, game):
@@ -12,11 +13,13 @@ class Tile():
         self.x = 0
         self.y = 0
         self.bg_x = game.bg_x
-        self.ground_brick = pg.image.load("images/Ground_Brick.png")
-        self.empty_brick = pg.image.load("images/Empty_Brick.png")
-        self.item_brick = pg.image.load("images/Item_brick.png")
+        self.ground_brick = pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["BROKEN_BRICK"]), 0, 2.5).convert_alpha()
+        self.empty_brick = pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["BLOCK"]), 0, 2.5).convert_alpha()
+        self.item_brick = pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["?_1"]), 0, 2.5).convert_alpha()
         self.tilemap = open("tiles/world1.txt", 'r')
         self.scaling_factor = 2.5
+        self.enemies = game.enemies
+        self.entities = game.entities
 
         self.world_tile = self.tilemap.read()
 
@@ -31,18 +34,29 @@ class Tile():
             for line in file:
                 self.x = 0
                 for char in line:
+                    # if char == 'X':
+                    #     self.screen.blit(pg.transform.rotozoom(self.ground_brick, 0, self.scaling_factor),
+                    #                      ((self.x * 16 * self.scaling_factor) + self.bg_x, self.y * 16 *
+                    #                       self.scaling_factor))
                     if char == 'X':
-                        self.screen.blit(pg.transform.rotozoom(self.ground_brick, 0, self.scaling_factor),
-                                         ((self.x * 16 * self.scaling_factor) + self.bg_x, self.y * 16 *
-                                          self.scaling_factor))
+                        self.entities.create_entity((self.x * 16 * self.scaling_factor, self.y * 16 * self.scaling_factor), self.ground_brick)
+
+
                     if char == 'B':
-                        self.screen.blit(pg.transform.rotozoom(self.empty_brick, 0, self.scaling_factor),
-                                         ((self.x * 16 * self.scaling_factor) +
-                                          self.bg_x, self.y * 16 * self.scaling_factor))
+                        # self.screen.blit(pg.transform.rotozoom(self.empty_brick, 0, self.scaling_factor),
+                        #                  ((self.x * 16 * self.scaling_factor) +
+                        #                   self.bg_x, self.y * 16 * self.scaling_factor))
+                        self.entities.create_entity(
+                            (self.x * 16 * self.scaling_factor, self.y * 16 * self.scaling_factor), self.empty_brick)
                     if char == '?':
-                        self.screen.blit(pg.transform.rotozoom(self.item_brick, 0, self.scaling_factor),
-                                         ((self.x * 16 * self.scaling_factor) + self.bg_x, self.y *
-                                          16 * self.scaling_factor))
+                        # self.screen.blit(pg.transform.rotozoom(self.item_brick, 0, self.scaling_factor),
+                        #                  ((self.x * 16 * self.scaling_factor) + self.bg_x, self.y *
+                        #                   16 * self.scaling_factor))
+                        self.entities.create_entity(
+                            (self.x * 16 * self.scaling_factor, self.y * 16 * self.scaling_factor), self.item_brick)
+
+                    if char == 'G':
+                        self.enemies.create_goomba((self.x * 16 * self.scaling_factor, self.y * 16 * self.scaling_factor))
 
                     self.x += 1
                 self.y += 1

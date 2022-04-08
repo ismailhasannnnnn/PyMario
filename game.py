@@ -3,14 +3,13 @@ import game_functions as gf
 from settings import Settings
 from stats import Stats
 from mario import Mario
-from vector import Vector
 from menu import Menu
 from scoreboard import Scoreboard
 from sound import Sound
-from goomba import Goomba
 from spritesheet import SpriteSheet
 from enemies import Enemies
 from tilemap import Tile
+from entity import Entities
 
 
 class Game:
@@ -30,12 +29,16 @@ class Game:
         self.bg_x = 0
         self.mario = Mario(game=self)
         self.enemies = Enemies(game=self)
+        self.entities = Entities(game=self)
         self.tile = Tile(game=self)
         self.scrolling = False
 
         self.enemies.create_goomba(ul=(1300, 485))
         self.enemies.create_koopa(ul=(600, 470))
         self.enemies.create_plant(ul=(800, 470))
+
+        self.tile.draw()
+
         # self.enemies.create_goomba(ul=(1340, 485))
 
 
@@ -60,6 +63,7 @@ class Game:
         self.mario.update()
         self.enemies.update()
         self.tile.update()
+        self.entities.update()
         print(f'Mario: {self.mario.rect.x}         {self.mario.rect.y}')
         # print(f'Mario: {self.mario.rect.x}         {self.mario.rect.y}')
         # print(self.scrolling)
@@ -68,10 +72,10 @@ class Game:
     def draw(self):
         self.screen.fill(self.settings.bg_color)
         self.screen.blit(pg.transform.rotozoom(Game.world, 0, 2.5), (self.bg_x, 0))
-        self.tile.draw()
         self.sb.draw()
         self.mario.draw()
         self.enemies.draw()
+        self.entities.draw()
         pg.display.update()
 
     def play(self):
