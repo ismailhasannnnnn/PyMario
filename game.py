@@ -13,8 +13,8 @@ from entity import Entities
 
 
 class Game:
-    world = pg.image.load("images/level_bg.png")
-    filename = "images/allsprites.png"
+
+
 
     def __init__(self):
         pg.init()
@@ -25,7 +25,9 @@ class Game:
         self.sb = Scoreboard(game=self)
         pg.display.set_caption("Super Mario Bros.")
         self.sound = Sound()
-        self.spritesheet = SpriteSheet(filename=Game.filename)
+        self.world = pg.image.load("images/level_bg.png").convert_alpha()
+        self.filename = "images/allsprites.png"
+        self.spritesheet = SpriteSheet(filename=self.filename)
         self.bg_x = 0
         self.mario = Mario(game=self)
         self.enemies = Enemies(game=self)
@@ -44,13 +46,13 @@ class Game:
 
     def scrollBg(self):
         if self.mario.rect.centerx >= self.screen.get_rect().centerx and self.mario.movingForward:
-            if (-(Game.world.get_rect().width * 2.5) + 1200) < self.bg_x: # multiplier 3.18 works
+            if (-(self.world.get_rect().width * 2.5) + 1200) < self.bg_x: # multiplier 3.18 works
                 self.bg_x -= 8
                 self.scrolling = True
                 # self.mario.v = Vector(0, self.mario.v.y)
                 self.mario.v.x = 0
             else:
-                self.bg_x = (-(Game.world.get_rect().width * 2.5) + 1200)
+                self.bg_x = (-(self.world.get_rect().width * 2.5) + 1200)
                 self.scrolling = False
                 self.mario.v.x = 1
         if not self.mario.movingForward or self.mario.movingBackward:
@@ -71,7 +73,7 @@ class Game:
 
     def draw(self):
         self.screen.fill(self.settings.bg_color)
-        self.screen.blit(pg.transform.rotozoom(Game.world, 0, 2.5), (self.bg_x, 0))
+        self.screen.blit(pg.transform.rotozoom(self.world, 0, 2.5), (self.bg_x, 0))
         self.sb.draw()
         self.mario.draw()
         self.enemies.draw()
