@@ -1,9 +1,8 @@
-import pygame as pg
-from vector import Vector
 from goomba import Goomba
 from koopa import Koopa
 from plant import Plant
-from pygame.sprite import Sprite, Group
+from pygame.sprite import Group
+
 
 class Enemies:
 

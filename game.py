@@ -8,14 +8,16 @@ from scoreboard import Scoreboard
 from sound import Sound
 from spritesheet import SpriteSheet
 from enemies import Enemies
+from tilemap import Tile
+from entity import Entities
+
 
 class Game:
-    world = pg.image.load("images/world1.png")
+    world = pg.image.load("images/level_bg.png")
     filename = "images/allsprites.png"
 
     def __init__(self):
         pg.init()
-
         self.settings = Settings()
         self.stats = Stats(game=self)
         self.bg_color = self.settings.bg_color
@@ -27,12 +29,16 @@ class Game:
         self.bg_x = 0
         self.mario = Mario(game=self)
         self.enemies = Enemies(game=self)
-
+        self.entities = Entities(game=self)
+        self.tile = Tile(game=self)
         self.scrolling = False
 
         self.enemies.create_goomba(ul=(1300, 485))
         self.enemies.create_koopa(ul=(600, 470))
         self.enemies.create_plant(ul=(800, 470))
+
+        self.tile.draw()
+
         # self.enemies.create_goomba(ul=(1340, 485))
 
 
@@ -56,6 +62,9 @@ class Game:
         self.sb.update()
         self.mario.update()
         self.enemies.update()
+        self.tile.update()
+        self.entities.update()
+        # print(f'Mario: {self.mario.rect.x}         {self.mario.rect.y}')
         # print(f'Mario: {self.mario.rect.x}         {self.mario.rect.y}')
         # print(self.scrolling)
 
@@ -66,6 +75,7 @@ class Game:
         self.sb.draw()
         self.mario.draw()
         self.enemies.draw()
+        self.entities.draw()
         pg.display.update()
 
     def play(self):

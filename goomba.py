@@ -11,8 +11,8 @@ class Goomba(Enemy):
 
 
     def __init__(self, game, ul):
-        goomba_images = [pg.transform.rotozoom(game.spritesheet.image_at(Goomba.goomba1_rect), 0, 2),
-                         pg.transform.rotozoom(game.spritesheet.image_at(Goomba.goomba2_rect), 0, 2)]
+        goomba_images = [pg.transform.rotozoom(game.spritesheet.image_at(Goomba.goomba1_rect), 0, 2.5),
+                         pg.transform.rotozoom(game.spritesheet.image_at(Goomba.goomba2_rect), 0, 2.5)]
         super().__init__(game, ul, image_list=goomba_images, delay=500, isLoop=True)
         self.v = Vector(-4, 0)
 
