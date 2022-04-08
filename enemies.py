@@ -2,6 +2,7 @@ from goomba import Goomba
 from koopa import Koopa
 from plant import Plant
 from pygame.sprite import Group
+from fireball import Fireball
 
 
 class Enemies:
@@ -27,6 +28,10 @@ class Enemies:
     def create_plant(self, ul):
         plant = Plant(self.game, ul)
         self.enemies.add(plant)
+
+    def create_fireball(self, ul):
+        fireball = Fireball(self.game, ul)
+        self.enemies.add(fireball)
 
     def update(self):
 
