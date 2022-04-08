@@ -10,12 +10,7 @@ class Mario(Sprite):
     mario_sheet = "images/mario1.png"
 
 
-    mario_running_forward = [pg.transform.rotozoom(pg.image.load("images/mario2.png"), 0, 3),
-                             pg.transform.rotozoom(pg.image.load("images/mario3.png"), 0, 3),
-                             pg.transform.rotozoom(pg.image.load("images/mario4.png"), 0, 3)]
-    mario_running_backward = [pg.transform.flip(pg.transform.rotozoom(pg.image.load("images/mario2.png"), 0, 3), True, False),
-                              pg.transform.flip(pg.transform.rotozoom(pg.image.load("images/mario3.png"), 0, 3), True, False),
-                              pg.transform.flip(pg.transform.rotozoom(pg.image.load("images/mario4.png"), 0, 3), True, False)]
+
 
     def __init__(self, game):
         super().__init__()
@@ -24,6 +19,16 @@ class Mario(Sprite):
         self.settings = game.settings
         self.image = pg.transform.rotozoom(pg.image.load("images/Blue_Brick.png"), 0, 3)
         self.sheet = Mario.mario_sheet
+
+        self.mario_running_forward = [pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["L_M_F2"]), 0, 3),
+                                 pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["L_M_F3"]), 0, 3),
+                                 pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["L_M_F4"]), 0, 3),
+                                pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["L_M_F3"]), 0, 3)]
+        self.mario_running_backward = [
+            pg.transform.flip(pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["L_M_F2"]), 0, 3), True, False),
+            pg.transform.flip(pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["L_M_F3"]), 0, 3), True, False),
+            pg.transform.flip(pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["L_M_F4"]), 0, 3), True, False),
+            pg.transform.flip(pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["L_M_F3"]), 0, 3), True, False)]
 
         self.image = pg.image.load(self.mario_sheet).convert_alpha()
 
@@ -38,17 +43,17 @@ class Mario(Sprite):
         self.isJumping = False
         self.sound = Sound()
         self.y_gravity = 2
-        self.jump_height = 20
+        self.jump_height = 25
         self.vel_y = self.jump_height
 
-        self.forward_timer = Timer(image_list=self.mario_running_forward, delay=200, start_index=0, is_loop=True)
+        self.forward_timer = Timer(image_list=self.mario_running_forward, delay=100, start_index=0, is_loop=True)
 
-        self.backward_timer = Timer(image_list=self.mario_running_backward, delay=200, start_index=0, is_loop=True)
+        self.backward_timer = Timer(image_list=self.mario_running_backward, delay=100, start_index=0, is_loop=True)
 
     def center_bottom(self):
         self.rect.centerx = self.screen_rect.centerx - 400
         # self.rect.bottom = self.screen_rect.bottom
-        self.rect.centery = self.screen_rect.centery + 195
+        self.rect.centery = self.screen_rect.centery + 178
 
         self.center = Vector(self.rect.centerx, self.rect.centery)
 
@@ -84,9 +89,9 @@ class Mario(Sprite):
 
         running_forward = self.forward_timer.image()
         running_backward = self.backward_timer.image()
-        stand_forward = pg.transform.rotozoom(pg.image.load("images/mario1.png"), 0, 3)
-        stand_backward = pg.transform.flip(pg.transform.rotozoom(pg.image.load("images/mario1.png"), 0, 3), True, False)
-        jump_forward = pg.transform.rotozoom(pg.image.load("images/mario5.png"), 0, 3)
+        stand_forward = pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["L_M_FSTAND"]), 0, 3)
+        stand_backward = pg.transform.flip(pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["L_M_BSTAND"]), 0, 3), False, False)
+        jump_forward = pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["L_M_FJUMP"]), 0, 3)
         jump_backward = pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["L_M_BJUMP"]), 0, 3)
 
         # print("moving Forward")

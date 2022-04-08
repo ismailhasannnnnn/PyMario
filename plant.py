@@ -19,4 +19,5 @@ class Plant(Enemy):
 
         collisions = pg.sprite.spritecollide(self.mario, self.enemies.enemies, False)
         if(len(collisions) > 0):
+            pass
             # self.game.mario.
