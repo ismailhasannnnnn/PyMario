@@ -21,12 +21,13 @@ class PregameScreen:
         self.menu_finished = False
         self.highscore = game.stats.get_highscore()
 
-        headingFont = pg.font.Font("fonts/8bit.ttf", 80)
-        subheadingFont = pg.font.Font("fonts/8bit.ttf", 50)
+        headingFont = pg.font.Font("fonts/8bit.ttf", 30)
+        subheadingFont = pg.font.Font("fonts/8bit.ttf", 30)
         font = pg.font.SysFont(None, 48)
 
-        strings = [('WORLD 1-1', WHITE, subheadingFont),
-                   (f'HIGH SCORE = {self.highscore:}', WHITE, subheadingFont)]
+        strings = [('WORLD 1-1', WHITE, headingFont),
+                   (f'HIGH SCORE = {self.highscore:}', WHITE, subheadingFont),
+                   ]
 
         self.texts = [self.get_text(msg=s[0], color=s[1], msg_font=s[2]) for s in strings]
 
@@ -49,7 +50,7 @@ class PregameScreen:
 
     def show(self):
         self.draw()
-        time.sleep(2.5)
+        time.sleep(1)
 
     def draw_text(self):
         n = len(self.texts)

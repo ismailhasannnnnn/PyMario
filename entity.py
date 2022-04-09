@@ -27,6 +27,8 @@ class Entities:
         for entity in self.entities:
             entity.draw()
 
+
+
 class Entity(Sprite):
 
     def __init__(self, game, ul, image):

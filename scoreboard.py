@@ -2,6 +2,7 @@ import pygame as pg
 from mario import Mario
 
 WHITE = (255, 255, 255)
+BLUE = (0, 162, 232)
 
 class SbElement:
 
@@ -32,8 +33,8 @@ class Scoreboard:
         self.stats = game.stats
         self.screen = game.screen
         self.sr = self.screen.get_rect()
-        self.bg_color = game.bg_color
-        font = pg.font.SysFont(None, 48)
+        self.bg_color = BLUE
+        font = pg.font.Font("fonts/8bit.ttf", 20)
 
         self.lives = SbElement(screen=self.screen, bg_color=self.bg_color, ul=(self.sr.right - 40, 20), font=font, get_lives=self.stats.get_lives())
 

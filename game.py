@@ -11,6 +11,7 @@ from enemies import Enemies
 from tilemap import Tile
 from entity import Entities
 from pregamescreen import PregameScreen
+from coords import Coords
 
 
 class Game:
@@ -39,6 +40,19 @@ class Game:
         self.enemies.create_goomba(ul=(1300, 485))
         self.enemies.create_koopa(ul=(600, 470))
         self.enemies.create_plant(ul=(800, 470))
+
+        self.short_pipe = self.spritesheet.image_at(Coords.coords["SHORT_PIPE"]).convert_alpha()
+        self.med_pipe = self.spritesheet.image_at(Coords.coords["MED_PIPE"]).convert_alpha()
+        self.long_pipe = self.spritesheet.image_at(Coords.coords["LONG_PIPE"]).convert_alpha()
+
+
+        self.entities.create_entity((1200,439), pg.transform.rotozoom(self.short_pipe, 0 ,2.5))
+        self.entities.create_entity((1600,400), pg.transform.rotozoom(self.med_pipe, 0 ,2.5))
+        self.entities.create_entity((1900,360), pg.transform.rotozoom(self.long_pipe, 0 ,2.5))
+        self.entities.create_entity((2500,360), pg.transform.rotozoom(self.long_pipe, 0 ,2.5))
+
+
+
 
         self.tile.draw()
 
@@ -96,7 +110,6 @@ def main():
     g = Game()
     menu = Menu(game=g)
     pregame = PregameScreen(game=g)
-
     menu.show()
     pregame.show()
     g.play()

@@ -14,7 +14,7 @@ class Tile():
         self.y = 0
         self.bg_x = game.bg_x
         self.ground_brick = pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["BROKEN_BRICK"]), 0, 2.5).convert_alpha()
-        self.empty_brick = pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["USED_BLOCK"]), 0, 2.5).convert_alpha()
+        self.empty_brick = pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["BRICK"]), 0, 2.5).convert_alpha()
         self.item_brick = pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["?_1"]), 0, 2.5).convert_alpha()
         self.stair_brick = pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["BLOCK"]), 0, 2.5).convert()
         self.tilemap = open("tiles/world1.txt", 'r')
@@ -40,14 +40,15 @@ class Tile():
                     if char == 'B':
                         self.entities.create_entity(
                             (self.x * 16 * self.scaling_factor, self.y * 16 * self.scaling_factor), self.empty_brick)
-                    if char == '?':
+                    if char == '?' or char == 'M':
                         self.entities.create_entity(
                             (self.x * 16 * self.scaling_factor, self.y * 16 * self.scaling_factor), self.item_brick)
+
                     if char == 'G':
                         self.enemies.create_goomba((self.x * 16 * self.scaling_factor, self.y * 16 * self.scaling_factor))
                     if char == 'R':
                         self.entities.create_entity(
-                            (self.x * 16 * self.scaling_factor, self.y * 16 * self.scaling_factor), self.item_brick)
+                            (self.x * 16 * self.scaling_factor, self.y * 16 * self.scaling_factor), self.stair_brick)
                     self.x += 1
                 self.y += 1
 
