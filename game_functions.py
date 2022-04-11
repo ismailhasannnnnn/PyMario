@@ -13,9 +13,7 @@ dirs = {LEFT: Vector(-1, 0),
         STOP: Vector(0, 0)}
 
 dir_keys = {pg.K_LEFT: LEFT, pg.K_a: LEFT,
-            pg.K_RIGHT: RIGHT, pg.K_d: RIGHT,
-            pg.K_UP: UP, pg.K_w: UP,
-            pg.K_DOWN: DOWN, pg.K_s: DOWN}
+            pg.K_RIGHT: RIGHT, pg.K_d: RIGHT}
 
 def check_events(game):
 

@@ -19,7 +19,7 @@ class SbElement:
 
     def update(self):
         self.score_image = self.font.render(str(self.get_lives), True,
-                                            self.text_color, self.bg_color)
+                                            self.text_color, self.bg_color).convert_alpha()
         self.score_rect = self.score_image.get_rect()
 
     def draw(self):

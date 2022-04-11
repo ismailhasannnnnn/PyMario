@@ -14,11 +14,10 @@ class Mario(Sprite):
 
     def __init__(self, game):
         super().__init__()
+        self.colliding = False
         self.game = game
         self.screen = game.screen
         self.settings = game.settings
-        self.image = pg.transform.rotozoom(pg.image.load("images/Blue_Brick.png"), 0, 3)
-        self.sheet = Mario.mario_sheet
 
         self.mario_running_forward = [pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["L_M_F2"]), 0, 3),
                                  pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["L_M_F3"]), 0, 3),
@@ -33,6 +32,8 @@ class Mario(Sprite):
         self.image = pg.image.load(self.mario_sheet).convert_alpha()
 
         self.rect = self.image.get_rect()
+        self.rect.w *= 3
+        self.rect.h *= 3
         self.screen_rect = self.screen.get_rect()
         self.center_bottom()
         self.v = Vector()
@@ -43,8 +44,9 @@ class Mario(Sprite):
         self.isJumping = False
         self.sound = Sound()
         self.y_gravity = 2
-        self.jump_height = 25
+        self.jump_height = 30
         self.vel_y = self.jump_height
+        self.onGround = False
 
         self.forward_timer = Timer(image_list=self.mario_running_forward, delay=100, start_index=0, is_loop=True)
 
@@ -53,12 +55,13 @@ class Mario(Sprite):
     def center_bottom(self):
         self.rect.centerx = self.screen_rect.centerx - 400
         # self.rect.bottom = self.screen_rect.bottom
-        self.rect.centery = self.screen_rect.centery + 178
+        self.rect.centery = self.screen_rect.centery + 195
 
         self.center = Vector(self.rect.centerx, self.rect.centery)
 
     def inc_add(self, other):
         self.v += other
+
 
     def clamp(self):
         rw, rh = self.rect.width, self.rect.height
@@ -72,16 +75,14 @@ class Mario(Sprite):
         self.enemies = self.game.enemies
         self.entities = self.game.entities
 
-        collisions = pg.sprite.spritecollideany(self, self.enemies.enemies)
-
-
-
         if self.isJumping:
             self.center.y -= self.vel_y
             self.vel_y -= self.y_gravity
             if self.vel_y < -self.jump_height:
                 self.isJumping = False
                 self.vel_y = self.jump_height
+
+
 
         self.center += self.v * self.settings.mario_speed_factor
         self.clamp()
@@ -115,3 +116,5 @@ class Mario(Sprite):
             self.screen.blit(stand_backward, self.rect)
         else:
             self.screen.blit(stand_forward, self.rect)
+
+        # pg.draw.rect(self.screen, (255, 255, 255), self.rect)

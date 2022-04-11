@@ -16,7 +16,8 @@ class Tile():
         self.ground_brick = pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["BROKEN_BRICK"]), 0, 2.5).convert_alpha()
         self.empty_brick = pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["BRICK"]), 0, 2.5).convert_alpha()
         self.item_brick = pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["?_1"]), 0, 2.5).convert_alpha()
-        self.stair_brick = pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["BLOCK"]), 0, 2.5).convert()
+        self.stair_brick = pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["BLOCK"]), 0, 2.5).convert_alpha()
+        self.flag = pg.transform.rotozoom(self.game.spritesheet.image_at(Coords.coords["FLAG_POLE"]), 0, 2.5).convert_alpha()
         self.tilemap = open("tiles/world1.txt", 'r')
         self.scaling_factor = 2.5
         self.enemies = game.enemies
@@ -49,6 +50,10 @@ class Tile():
                     if char == 'R':
                         self.entities.create_entity(
                             (self.x * 16 * self.scaling_factor, self.y * 16 * self.scaling_factor), self.stair_brick)
+                    if char == 'K':
+                        self.enemies.create_koopa((self.x * 16 * self.scaling_factor, self.y * 16 * self.scaling_factor))
+                    if char == 'F':
+                        self.entities.create_entity((self.x * 16 * self.scaling_factor, (self.y * 16 * self.scaling_factor) - 152 * self.scaling_factor), self.flag)
                     self.x += 1
                 self.y += 1
 

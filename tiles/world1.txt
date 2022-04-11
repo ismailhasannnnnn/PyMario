@@ -6,11 +6,11 @@
                        ?                                                         BBBBBBBB   BBB?             M            BBB    B??B                                                         RR
                                                                                                                                                                                              RRR
                                                                                                                                                                                             RRRR
-                                                                I                                                                                                                          RRRRR
+X                                                                I                                                                                                                          RRRRR
                  ?   BMB?B                                                    BMB              L    BS    ?  ?  ?      B          BB      R  R          RR  R             BB?B            RRRRRR
                                                                                                                                          RR  RR        RRR  RR                           RRRRRRR
-                                                                                                           K                            RRR  RRR      RRRR  RRR                         RRRRRRRR
-                       G                 G           G G                                         G G              G  G       G G G G   RRRR  RRRR    RRRRR  RRRR                G G    RRRRRRRRR        R
+                                                                                                           K                            RRR  RRR      RRRR  RRR                         RRRRRRRR        
+                       G                 G           G G                                         G G              G  G       G G G G   RRRR  RRRR    RRRRR  RRRR                G G    RRRRRRRRR        F
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  XXXXXXXXXXXXXXX   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  XXXXXXXXXXXXXXX   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 

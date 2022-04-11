@@ -16,3 +16,12 @@ class Goomba(Enemy):
         super().__init__(game, ul, image_list=goomba_images, delay=500, isLoop=True)
         self.v = Vector(-4, 0)
 
+
+    def collision_check(self):
+        collision_tolerance = 10
+        if self.rect.colliderect(self.mario.rect):
+            if abs(self.mario.rect.bottom - self.rect.top) < 10:
+                self.kill()
+            else:
+                self.mario.kill()
+

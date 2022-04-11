@@ -31,11 +31,14 @@ class Game:
         self.filename = "images/allsprites.png"
         self.spritesheet = SpriteSheet(filename=self.filename)
         self.bg_x = 0
-        self.mario = Mario(game=self)
+
         self.enemies = Enemies(game=self)
         self.entities = Entities(game=self)
+
+        self.mario = Mario(game=self)
         self.tile = Tile(game=self)
         self.scrolling = False
+        self.canScroll = True
 
         self.enemies.create_goomba(ul=(1300, 485))
         self.enemies.create_koopa(ul=(600, 470))
@@ -60,7 +63,7 @@ class Game:
 
 
     def scrollBg(self):
-        if self.mario.rect.centerx >= self.screen.get_rect().centerx and self.mario.movingForward:
+        if self.mario.rect.centerx >= self.screen.get_rect().centerx and self.mario.movingForward and self.canScroll:
             if (-(self.world.get_rect().width * 2.5) + 1200) < self.bg_x: # multiplier 3.18 works
                 self.bg_x -= 8
                 self.scrolling = True
@@ -77,10 +80,13 @@ class Game:
     def update(self):
         self.scrollBg()
         self.sb.update()
-        self.mario.update()
-        self.enemies.update()
-        self.tile.update()
+
+
         self.entities.update()
+        self.enemies.update()
+        self.mario.update()
+        self.tile.update()
+
         # print(f'Mario: {self.mario.rect.x}         {self.mario.rect.y}')
         # print(f'Mario: {self.mario.rect.x}         {self.mario.rect.y}')
         # print(self.scrolling)

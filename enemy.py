@@ -21,7 +21,8 @@ class Enemy(Sprite):
 
 
     def collision_check(self):
-        collisions = pg.sprite.spritecollide(self.mario, self.enemies.enemies, True)
+        # collisions = pg.sprite.spritecollide(self.mario, self.enemies.enemies, True)
+        pass
 
 
     def update(self):
